@@ -1,0 +1,14 @@
+host: 0.0.0.0
+port: 8003
+tfidf:
+  max_features: 5000
+  ngram_range: [1, 2]
+  min_df: 1
+  max_df: 1.0
+ocsvm:
+  kernel: rbf
+  gamma: scale
+  nu: 0.05
+model_dir: /app/models
+model_name: ocsvm_tfidf.joblib
+
