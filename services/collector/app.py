@@ -12,16 +12,16 @@ ENCODING = cfg.get("encoding", "utf-8")
 DEFAULT_BATCH = int(cfg.get("batch_size", 1000))
 
 class LogLine(BaseModel):
-    line_id: int              # порядковый номер строки (0..)
-    raw: str                  # сырая строка
-    alert_tag: str            # первый токен (в BGL '-' = non-alert)
-    is_alert: bool            # alert_tag != '-'
-    message: str              # остаток строки без первого токена
+    line_id: int
+    raw: str
+    alert_tag: str
+    is_alert: bool
+    message: str
 
 class BatchResponse(BaseModel):
     start: int
     end: int
-    total: int | None         # None, если заранее не считаем
+    total: int | None
     data: List[LogLine]
 
 @app.get("/health")
@@ -29,8 +29,6 @@ def health():
     return {"status": "ok", "dataset_path": DATASET_PATH}
 
 def parse_bgl_line(idx: int, line: str) -> LogLine:
-    # В BGL первый столбец — alert-тэг: '-' (не-alert) или категория.
-    # Остальное — сообщение (мы не делаем агрессивный парс; оставляем «как есть»).
     s = line.rstrip("\n")
     if not s:
         return LogLine(line_id=idx, raw="", alert_tag="-", is_alert=False, message="")
@@ -52,6 +50,5 @@ def collect_batch(offset: int = Query(0, ge=0), limit: int = Query(DEFAULT_BATCH
     items: list[LogLine] = []
     for idx, line in iter_slice(DATASET_PATH, start, end):
         items.append(parse_bgl_line(idx, line))
-    # total посчитать дорого (для гигабайтных файлов), поэтому оставим None — это честно для потокового чтения
     return BatchResponse(start=start, end=start+len(items), total=None, data=items)
 

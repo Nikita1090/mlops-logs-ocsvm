@@ -1,6 +1,7 @@
 host: 0.0.0.0
 port: 8001
-batch_size: 1000
 dataset_path: /app/data/BGL/BGL.log
 encoding: utf-8
+out_dir: /app/out
+batch_size: 1000
 
