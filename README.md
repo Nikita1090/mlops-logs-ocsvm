@@ -33,7 +33,7 @@
 
     * `POST /bgl/logs` и `POST /bgl/logs/bulk` (вставка),
     * `GET /bgl/logs` (листинг с параметрами), `GET /bgl/logs/{id}` (чтение)
-  * Таблицы: `bgl_logs` (сырые строки + тэг alert), `models` (метаданные моделей)
+  * Таблицы: `bgl_logs` (сырые строки + метка), `models` (метаданные моделей)
 *  **Дополнительно (не включено по умолчанию):**
 
   * Расширенный лог действий в файл
@@ -44,7 +44,7 @@
 
   * REST API:
 
-    * `POST /train` — обучение **TF-IDF + One-Class SVM** на **нормальных** строках (`alert_tag == '-'`)
+    * `POST /train` — обучение **TF-IDF + One-Class SVM** на **нормальных** строках
     * `POST /predict` — инференс (метка 1/-1 + decision score)
     * `GET /summary` — состояние/пути модели
   * Хранение артефактов: `models/ocsvm_tfidf_bgl.joblib`
