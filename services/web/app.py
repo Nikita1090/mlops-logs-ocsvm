@@ -7,9 +7,9 @@ from config import load_config
 cfg = load_config()
 app = FastAPI(title="Web Master (vectors)")
 
-COLLECTOR_URL = cfg["services"]["collector"] # например: http://collector:8001
-STORAGE_URL   = cfg["services"]["storage"] # например: http://storage:8002
-ML_URL        = cfg["services"]["ml"] # например: http://ml:8003
+COLLECTOR_URL = cfg["services"]["collector"]
+STORAGE_URL   = cfg["services"]["storage"]
+ML_URL        = cfg["services"]["ml"]
 REPORT_DIR    = cfg["report_dir"]
 os.makedirs(REPORT_DIR, exist_ok=True)
 
