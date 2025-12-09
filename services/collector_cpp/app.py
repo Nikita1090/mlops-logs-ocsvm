@@ -86,7 +86,7 @@ def build():
 def collect_vectors(offset: int = Query(0, ge=0), limit: int = Query(BATCH_SIZE, gt=0)):
     """
     Возвращает батч векторизованных событий
-    При первом вызове спровоцирует сборку артефактов
+    При первом вызове соберёт артефакты
     """
     ensure_built()
     items: list[VectorItem] = []
