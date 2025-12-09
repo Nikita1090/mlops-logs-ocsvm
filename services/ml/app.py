@@ -33,7 +33,7 @@ app = FastAPI(title="ML Service (vectors-friendly)")
 
 STORAGE_URL = os.environ.get("STORAGE_URL", "http://storage:8002")
 
-# Оставлена ради совместимости
+# Оставлена ради совместимости, нодо будет снести потом
 MODEL_TXT = OCSVMModel(TFIDF_CFG, OCSVM_CFG, MODEL_DIR, MODEL_NAME_TXT)
 
 MODEL_VEC = OCSVMModelRaw(OCSVM_CFG, MODEL_DIR, "ocsvm_raw_vectors.joblib")
