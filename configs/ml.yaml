@@ -1,12 +1,10 @@
 host: 0.0.0.0
 port: 8003
 
-# где хранить модели внутри контейнера ml
 model_dir: /app/models
-# имя файла текстовой модели (TF-IDF + OCSVM), пусть остаётся — совместимость
+
 model_name: ocsvm_text.joblib
 
-# Параметры TF-IDF (нужны для текстовой ветки; для vector-ветки игнорируются)
 tfidf:
   max_features: 5000
   ngram_range: [1, 1]
@@ -15,7 +13,6 @@ tfidf:
   lowercase: false
   token_pattern: "(?u)\\b\\w+\\b"
 
-# Параметры One-Class SVM — общие для текстовой и vector-ветки
 ocsvm:
   kernel: rbf
   gamma: scale
