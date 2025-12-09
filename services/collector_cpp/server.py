@@ -65,7 +65,6 @@ def collect_vectors(offset: int = Query(0, ge=0), limit: int = Query(1000, gt=0)
     X = store.transform(sl["template"].tolist())
     dim = X.shape[1]
     rows: List[VectorRow] = []
-    # преобразуем в плотный (для простоты передачи) — ок для батчей
     for templ_id, templ, row in zip(sl["id"].tolist(), sl["template"].tolist(), X.toarray()):
         rows.append(VectorRow(templ_id=templ_id, template=templ, vector=row.astype(float).tolist()))
     return VectorBatch(start=start, end=end, total=total, dim=dim, rows=rows)
